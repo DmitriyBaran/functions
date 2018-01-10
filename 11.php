@@ -1,21 +1,19 @@
-<!-- 11. Написать функцию, которая в качестве аргумента принимает строку, и форматирует ее таким образом,
+﻿<!-- 11. Написать функцию, которая в качестве аргумента принимает строку, и форматирует ее таким образом,
 что каждое новое предложение начиняется с большой буквы. -->
-<html>
-<head>
-    <title>11</title>
-</head>
-<body>
+
 <?php
-echo up($_GET['a']);
-?>
-        <form method="get">
-            <textarea name="a"></textarea>
-            <button type="submit">submit</button>
-        </form>
-    <?php
-        function up($a){
-            return ucfirst(explode('.',$_GET['a']));
+    function up ($a)
+    {
+        $a = "string. text. text. text";
+        // echo mb_detect_encoding($a);
+        $exp = explode('. ',$a);
+        foreach ($exp as $value){
+            $value = mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
+            echo ucfirst($value) . '. ';
         }
-    ?>
-</body>
-</html>
+    }
+    return up($value); //работает только для латиницы
+
+?>
+
+<!-- нужно использовать iconv-->

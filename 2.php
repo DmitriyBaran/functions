@@ -4,29 +4,27 @@
     <title>2</title>
 </head>
 <body>
-    <form method="get">
-        <textarea name="a"> </textarea>
-        <button type="submit">submit</button>
-    </form>
-    <?php
-        $text = $_GET['a'];
-        function top($text){
-            $text = explode(' ',$text);
-            for($i = 0; $i < count($text); $i++){
-                for($j = 0; $j < count($text)-1; $j++){
-                    if (mb_strlen($text[$j]) > mb_strlen($text[$j+1])){
-                        $str = $text[$j];
-                        $text[$j] = $text[$j + 1];
-                        $text[$j+1] = $str;
-                    }
-                }
-            }
-            return (array_slice($text,0 , 3));
-        }
-        print_r (top($text));
-            ?>
+<form method="get">
+    <textarea name="text"> </textarea>
+    <button type="submit" name="button">submit</button>
+</form>
+<?php
+$string = isset($_GET['text']) ? $_GET['text'] : false;
+function top ($string)
+{
+    $arr = [];
+    $exp = (explode(' ', $string));
+    foreach ($exp as $value) {
+        $arr[$value] = mb_strlen($value);
+    }
+    arsort($arr);
+    return array_slice($arr,0,3);
+}
+if (isset($_GET['button'])) {
+    echo "<pre>";
+    print_r (top($string));
+    echo "<pre>";
+}
+?>
 </body>
 </html>
-
-
-<!--разбить на массив, потом array multicastor, array_slice от 0 до 3-->

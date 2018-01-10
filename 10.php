@@ -11,10 +11,14 @@
     <?php
         function unique ($text)
         {
+
             $text = explode(' ',$text);
-            return count(array_unique($text));
+            if (!empty($_GET['text'])) {
+                return count(array_unique($text));
+            }
         }
-        echo unique($_GET['text']);
+            echo unique($_GET['text']);
+
     ?>
 </body>
 </html>
